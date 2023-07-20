@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+package category;
+
+// Vscode shows errors but it's working properly. //.proto
+import "product.proto";
+
+service CategoryService {
+  rpc CreateCategory (CreateCategoryRequest) returns (CategoryOperationResponse) {}
+  rpc UpdateCategory (UpdateCategoryRequest) returns (CategoryOperationResponse) {}
+  rpc FindOne (FindOneCategoryRequest) returns (FindOneCategoryResponse) {}
+  rpc FindAll (FindAllCategoriesRequest) returns (FindAllCategoriesResponse) {}
+  rpc GetCategoriesByIds (GetCategoriesByIdsRequest) returns (GetCategoriesByIdsResponse) {}
+}
+
+// ResponseOperation
+message CategoryOperationResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  int32 id = 3;
+  string message = 4;
+}
+
+// CreateCategory
+message CreateCategoryRequest {
+  string name = 1;
+  optional string description = 2;
+  optional int32 parent_id = 3;
+  repeated int32 subcategories_ids = 4;
+  repeated string images = 5;
+}
+
+// UpdateCategory
+message UpdateCategoryRequest {
+  int32 id = 7;
+  optional string name = 1;
+  optional string description = 2;
+  optional int32 parent_id = 3;
+  repeated int32 subcategories_ids = 4;
+  repeated string images = 5;
+  repeated int32 products_ids = 6;
+}
+
+// FindOne
+
+message FindOneRelatedCategories {
+  int32 id = 1;
+  string name = 2;
+  optional string description = 3; 
+  repeated string images = 6;
+}
+
+message FindOneCategoryData {
+  int32 id = 1;
+  string name = 2;
+  optional string description = 3;
+  optional int32 parent_id = 4;
+  repeated FindOneRelatedCategories subcategories = 5;
+  repeated string images = 6;
+  optional FindOneRelatedCategories parent = 7;
+  // Vscode shows errors but it's working properly. //.proto
+  repeated product.ProductsByIdsData products = 8;
+
+}
+
+
+message FindOneCategoryRequest {
+  int32 id = 1;
+}
+
+message FindOneCategoryResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  FindOneCategoryData data = 3;
+}
+
+
+// FindAll
+message FindManyCategoryData {
+  int32 id = 1;
+  string name = 2;
+  optional string description = 3;
+  optional int32 parent_id = 4;
+  repeated FindManyCategoryData subcategories = 5;
+  repeated string images = 6;
+  optional FindManyCategoryData parent = 7;
+}
+
+message FindAllCategoriesRequest {
+}
+
+message FindAllCategoriesResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  repeated FindManyCategoryData data = 3;
+}
+
+
+// GetCategoriesByIds
+message CategoriesByIdsData { 
+  int32 id = 1;
+  string name = 2;
+  optional string description = 3;
+  repeated int32 subcategories = 5;
+  repeated string images = 6;
+  optional int32 parent = 7;
+  repeated int32 products = 8;
+}
+
+message GetCategoriesByIdsRequest{
+  repeated int32 ids = 1;
+}
+message GetCategoriesByIdsResponse{
+  int32 status = 1;
+  repeated string error = 2;
+  repeated CategoriesByIdsData data = 3;
+}
