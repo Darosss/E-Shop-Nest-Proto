@@ -38,7 +38,6 @@ message UpdateCategoryRequest {
   optional int32 parent_id = 3;
   repeated int32 subcategories_ids = 4;
   repeated string images = 5;
-  repeated int32 products_ids = 6;
 }
 
 // FindOne
@@ -59,7 +58,7 @@ message FindOneCategoryData {
   repeated string images = 6;
   optional FindOneRelatedCategories parent = 7;
   // Vscode shows errors but it's working properly. //.proto
-  repeated product.ProductsByIdsData products = 8;
+  repeated product.FindManyProductData products = 8;
 
 }
 
