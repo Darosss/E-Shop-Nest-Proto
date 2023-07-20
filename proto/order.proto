@@ -7,9 +7,10 @@ service OrderService {
 }
 
 message CreateOrderRequest {
-  int32 productId = 1;
-  int32 quantity = 2;
-  int32 userId = 3;
+  int32 userId = 1;
+  string shipping_addres = 2;
+  string paymentMethod = 3;
+  map<int32, int32> productIdToQuantity = 4;
 }
 
 message CreateOrderResponse {
