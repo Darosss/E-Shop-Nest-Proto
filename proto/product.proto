@@ -166,7 +166,7 @@ message FindManyProductData {
 }
 
 message FindAllProductsRequest {
-  optional int32 category = 1;
+  repeated int32 categories = 1;
 }
 
 message FindAllProductsResponse {
