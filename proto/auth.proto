@@ -5,6 +5,7 @@ package auth;
 service AuthService {
   rpc Register (RegisterRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
+  rpc Profile (ProfileRequest) returns (ProfileResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
 }
 
@@ -43,4 +44,25 @@ message ValidateResponse {
   int32 status = 1;
   repeated string error = 2;
   int32 userId = 3;
+}
+
+// Profile
+
+message ProfileData {
+  int32 id = 1;
+  string email = 2;
+  optional string firstname = 3;
+  optional string surname = 4;
+  optional int32 phone = 5;
+
+}
+
+message ProfileRequest {
+  int32 userId = 1;
+}
+
+message ProfileResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  ProfileData data = 3;
 }
