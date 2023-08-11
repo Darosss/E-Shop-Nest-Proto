@@ -9,6 +9,9 @@ service CategoryService {
   rpc CreateCategory (CreateCategoryRequest) returns (CategoryOperationResponse) {}
   rpc UpdateCategory (UpdateCategoryRequest) returns (CategoryOperationResponse) {}
   rpc FindOne (FindOneCategoryRequest) returns (FindOneCategoryResponse) {}
+  rpc FindOneByCategorySlug (FindOneByCategorySlugRequest) returns (FindOneCategoryResponse) {}
+  rpc FindOneBySubHeadSlug (FindOneBySubHeadSlugRequest) returns (FindOneCategoryResponse) {}
+  rpc FindOneByHeadSlug (FindOneByHeadSlugRequest) returns (FindOneCategoryResponse) {}
   rpc FindAll (FindAllCategoriesRequest) returns (FindAllCategoriesResponse) {}
   rpc GetCategoriesByIds (GetCategoriesByIdsRequest) returns (GetCategoriesByIdsResponse) {}
 }
@@ -64,8 +67,24 @@ message FindOneCategoryData {
 
 
 message FindOneCategoryRequest {
-  int32 id = 1;
+  optional int32 id = 1;
 }
+
+message FindOneByCategorySlugRequest {
+  optional string headSlug = 1;
+  optional string subHeadSlug = 2;
+  optional string categorySlug = 3;
+}
+
+message FindOneBySubHeadSlugRequest {
+  optional string headSlug = 1;
+  optional string subHeadSlug = 2;
+}
+
+message FindOneByHeadSlugRequest {
+  optional string headSlug = 1;
+}
+
 
 message FindOneCategoryResponse {
   int32 status = 1;
