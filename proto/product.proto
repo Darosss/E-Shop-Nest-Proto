@@ -18,7 +18,21 @@ service ProductService {
  
 }
 
+message PaginationQueries {
+  optional int32 limit = 1;
+  optional int32 page = 2;
+}
 
+message SortQueries {
+  optional int32 sortOrder = 1;
+  optional string sortBy = 2;
+}
+
+message ProductQueries {
+  PaginationQueries pagination = 1;
+  SortQueries sort = 2;
+
+}
 
 
 message ProductOperationResponse {
@@ -164,10 +178,12 @@ message FindManyProductData {
   int32 stock = 4;
   double price = 5;
   string brand = 6;
+  int32 sold = 7;
 }
 
 message FindAllProductsRequest {
   repeated int32 categories = 1;
+  optional ProductQueries queries = 2;
 }
 
 message FindAllProductsResponse {
@@ -184,6 +200,7 @@ message FindProductsCountByCategoryIdData{
 
 message FindProductsCountByCategoryIdRequest {
   repeated int32 categoriesIds = 1;
+  optional ProductQueries queries = 2;
 }
 
 message FindProductsCountByCategoryIdResponse {

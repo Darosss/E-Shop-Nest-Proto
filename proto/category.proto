@@ -76,15 +76,18 @@ message FindOneByCategorySlugRequest {
   optional string headSlug = 1;
   optional string subHeadSlug = 2;
   optional string categorySlug = 3;
+  optional product.ProductQueries productQueries = 4;
 }
 
 message FindOneBySubHeadSlugRequest {
   optional string headSlug = 1;
   optional string subHeadSlug = 2;
+  optional product.ProductQueries productQueries = 3;
 }
 
 message FindOneByHeadSlugRequest {
   optional string headSlug = 1;
+  optional product.ProductQueries productQueries = 2;
 }
 
 
