@@ -6,7 +6,7 @@
   "scripts": {
     "proto:auth": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto.cmd -I=./proto --ts_proto_out=compiled/ ./proto/auth.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
     "proto:order": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto.cmd -I=./proto --ts_proto_out=compiled/ ./proto/order.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
-    "proto:product": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto.cmd -I=./proto --ts_proto_out=compiled/ ./proto/product.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
+    "proto:product": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto.cmd -I=./proto --ts_proto_out=compiled/ ./proto/product-property.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
     "proto:category": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto.cmd -I=./proto --ts_proto_out=compiled/ ./proto/category.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
     "proto:all": "npm run proto:auth && npm run proto:order && npm run proto:product && npm run proto:category"
   },
