@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package product;
 
-
+import "pagination.proto";
 
 service ProductService {
   rpc CreateProduct (CreateProductRequest) returns (ProductOperationResponse) {}
@@ -15,25 +15,8 @@ service ProductService {
   rpc SumProductsPrice (SumProductsPriceRequest) returns (SumProductsPriceResponse) {}
   rpc FindAll (FindAllProductsRequest) returns (FindAllProductsResponse) {}
   rpc FindProductsCountByCategoryId (FindProductsCountByCategoryIdRequest) returns (FindProductsCountByCategoryIdResponse) {}
- 
-}
-
-message PaginationQueries {
-  optional int32 limit = 1;
-  optional int32 page = 2;
-}
-
-message SortQueries {
-  optional int32 sortOrder = 1;
-  optional string sortBy = 2;
-}
-
-message ProductQueries {
-  PaginationQueries pagination = 1;
-  SortQueries sort = 2;
 
 }
-
 
 message ProductOperationResponse {
   int32 status = 1;
@@ -183,7 +166,7 @@ message FindManyProductData {
 
 message FindAllProductsRequest {
   repeated int32 categories = 1;
-  optional ProductQueries queries = 2;
+  optional pagination.Queries queries = 2;
 }
 
 message FindAllProductsResponse {
@@ -200,7 +183,7 @@ message FindProductsCountByCategoryIdData{
 
 message FindProductsCountByCategoryIdRequest {
   repeated int32 categoriesIds = 1;
-  optional ProductQueries queries = 2;
+  optional pagination.Queries queries = 2;
 }
 
 message FindProductsCountByCategoryIdResponse {

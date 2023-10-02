@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package pagination;
+
+message PaginationQueries {
+    optional int32 limit = 1;
+    optional int32 page = 2;
+  }
+  
+  message SortQueries {
+    optional int32 sortOrder = 1;
+    optional string sortBy = 2;
+  }
+  
+  message Queries {
+    PaginationQueries pagination = 1;
+    SortQueries sort = 2;
+  }
