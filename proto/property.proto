@@ -1,0 +1,73 @@
+
+syntax = "proto3";
+
+package property;
+
+
+import "property-category.proto";
+
+service PropertyService {
+  rpc Create (CreatePropertyRequest) returns (PropertyOperationResponse) {}
+  rpc Update (UpdatePropertyRequest) returns (PropertyOperationResponse) {}
+  rpc FindOne (FindOnePropertyRequest) returns (FindOnePropertyResponse) {}
+  rpc FindAll (FindAllPropertyRequest) returns (FindAllPropertyResponse) {}
+  }
+
+
+
+// CreateProperty
+message CreatePropertyRequest {
+  string name = 1;
+  int32 categoryId  = 2;
+}
+
+// UpdateProperty
+message UpdatePropertyRequest {
+  int32 id = 1;
+  optional string name = 2;
+  optional int32 categoryId = 3;
+}
+
+
+message PropertyOperationResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  int32 id = 3;
+  string message = 4;
+}
+
+// Find one
+message FindOnePropertyRequest {
+  int32 id = 1;
+}
+
+
+message FindOnePropertyData {
+  int32 id = 1;
+  string name = 2;
+  property_category.FindOnePropertyCategoryData category = 3;
+}
+
+
+message FindOnePropertyResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  FindOnePropertyData data = 3;
+}
+
+//Find all
+
+message FindManyPropertyData {
+  int32 id = 1;
+  string name = 2;
+}
+
+message FindAllPropertyRequest {
+}
+
+
+message FindAllPropertyResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  repeated FindManyPropertyData data = 3;
+}
