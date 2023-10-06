@@ -1,0 +1,87 @@
+
+syntax = "proto3";
+
+package product_property;
+
+
+import "product.proto";
+import "property.proto";
+import "property-category.proto";
+
+service ProductPropertyService {
+  rpc Create (CreateProductPropertyRequest) returns (ProductPropertyOperationResponse) {}
+  rpc Update (UpdateProductPropertyRequest) returns (ProductPropertyOperationResponse) {}
+  rpc FindOne (FindOneProductPropertyRequest) returns (FindOneProductPropertyResponse) {}
+  rpc FindAll (FindAllProductPropertyRequest) returns (FindManyProductPropertiesResponse) {}
+  rpc FindProductPropertiesByProductId (FindProductPropertiesByProductIdRequest) returns (FindManyProductPropertiesResponse) {}
+  }
+
+
+
+// CreateProductProperty
+message CreateProductPropertyRequest {
+  string value = 1;
+  int32 productId = 2;
+  int32 propertyId = 3;
+}
+
+// UpdateProductProperty
+message UpdateProductPropertyRequest {
+  int32 id = 1;
+  optional string value = 2;
+  optional int32 productId = 3;
+  optional int32 propertyId = 4;
+}
+
+
+message ProductPropertyOperationResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  int32 id = 3;
+  string message = 4;
+}
+
+// Find one
+message FindOneProductPropertyRequest {
+  int32 id = 1;
+}
+
+
+message FindOneProductPropertyData {
+  int32 id = 1;
+  string value = 2;
+  product.FindOneData product = 3;
+  property.FindOnePropertyData property = 4;
+}
+
+
+message FindOneProductPropertyResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  FindOneProductPropertyData data = 3;
+}
+
+message FindManyProductPropertyData {
+  int32 id = 1;
+  string value = 2;
+  int32 product = 3;
+  property.FindOnePropertyData property = 4;
+}
+
+message FindManyProductPropertiesResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  repeated FindManyProductPropertyData data = 3;
+}
+
+//Find all
+
+message FindAllProductPropertyRequest {
+}
+
+//FindAllProductPropertiesByProductId
+
+message FindProductPropertiesByProductIdRequest {
+  int32 productId = 1;
+}
+
